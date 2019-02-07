@@ -1,3 +1,5 @@
+[![Contribute](https://che.openshift.io/factory/resources/factory-contribute.svg)](https://che.openshift.io/f?id=factorymtyoro1y0qt8tq2j)
+
 Employee Database
 =====================
 
