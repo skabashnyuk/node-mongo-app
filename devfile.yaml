@@ -1,0 +1,36 @@
+---
+specVersion: 0.0.1
+name: mongo-nodejs-environment
+projects:
+  - name: nodejs-sample
+    source:
+      type: git
+      location: 'https://github.com/l0rd/NodeJS-Sample-App/'
+components:
+  - name: mongodb
+    type: kubernetes
+    local: app.yaml
+    selector:
+      app.kubernetes.io/name: mongo
+      app.kubernetes.io/component: database
+      app.kubernetes.io/part-of: demo
+  - name: nodejs
+    type: kubernetes
+    local: app.yaml
+    selector:
+      app.kubernetes.io/name: node.js
+      app.kubernetes.io/component: web
+      app.kubernetes.io/part-of: demo
+  - name: theia-ide
+    type: cheEditor
+    id: eclipse/theia:0.0.3
+  - name: jdt.ls
+    type: chePlugin
+    id: eclipse/theia-jdtls:0.0.3
+commands:
+  - name: run
+    actions:
+      - type: exec
+        component: nodejs
+        command: npm app.js
+        workdir: /projects/demo
