@@ -1,32 +1,18 @@
 ---
 specVersion: 0.0.1
-name: mongo-nodejs-environment
+name: node-mongo-demo
 projects:
-  - name: nodejs-sample
+  - name: simple-nodejs-weather-app
     source:
       type: git
       location: 'https://github.com/l0rd/NodeJS-Sample-App/'
-components:
-  - name: mongodb
-    type: kubernetes
-    local: app.yaml
-    selector:
-      app.kubernetes.io/name: mongo
-      app.kubernetes.io/component: database
-      app.kubernetes.io/part-of: demo
-  - name: nodejs
-    type: kubernetes
-    local: app.yaml
-    selector:
-      app.kubernetes.io/name: node.js
-      app.kubernetes.io/component: web
-      app.kubernetes.io/part-of: demo
+tools:
   - name: theia-ide
     type: cheEditor
-    id: eclipse/theia:0.0.3
-  - name: jdt.ls
+    id: org.eclipse.che.editor.theia:1.0.0
+  - name: exec-plugin
     type: chePlugin
-    id: eclipse/theia-jdtls:0.0.3
+    id: che-machine-exec-plugin:0.0.1
 commands:
   - name: run
     actions:
