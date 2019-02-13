@@ -13,6 +13,9 @@ tools:
   - name: exec-plugin
     type: chePlugin
     id: che-machine-exec-plugin:0.0.1
+  - name: node-mongo-demo
+    type: kubernetes
+    local: app4devfile.json    
 commands:
   - name: run
     actions:
