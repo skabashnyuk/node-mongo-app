@@ -14,7 +14,11 @@ tools:
     id: che-machine-exec-plugin:0.0.1
   - name: node-mongo-demo
     type: kubernetes
-    local: app4devfile.yaml    
+    local: app4devfile.yaml
+    selector:
+      app.kubernetes.io/name: mysql
+      app.kubernetes.io/component: database
+      app.kubernetes.io/part-of: petclinic
 commands:
   - name: run
     actions:
