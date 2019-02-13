@@ -22,6 +22,6 @@ commands:
   - name: run
     actions:
       - type: exec
-        component: nodejs
+        tool: nodejs
         command: npm app.js
         workdir: /projects/demo
