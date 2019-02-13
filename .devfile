@@ -22,6 +22,6 @@ commands:
   - name: run
     actions:
       - type: exec
-        tool: nodejs
+        tool: theia-ide
         command: npm app.js
         workdir: /projects/demo
