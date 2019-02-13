@@ -1,0 +1,86 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "labels": {
+      "name": "demo-workspace"
+    },
+    "name": "demo-workspace",
+    "namespace": "kube-che",
+  },
+  "spec": {
+    "selector": {
+      "matchLabels": {
+        "name": "demo-workspace"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "name": "demo-workspace"
+        },
+        "name": "demo-workspace"
+      },
+      "spec": {
+        "containers": [
+            {
+                "image": "mongo",
+                "imagePullPolicy": "Always",
+                "name": "mongo",
+                "ports": [
+                {
+                    "containerPort": 27017,
+                    "hostPort": 27017,
+                    "name": "mongo",
+                    "protocol": "TCP"
+                }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                {
+                    "mountPath": "/data/db",
+                    "name": "mongo-persistent-storage"
+                },
+                {
+                    "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                    "name": "default-token-wnqn9",
+                    "readOnly": true
+                }
+                ]
+            },
+            {
+                "args": [
+                "cd /home && git clone https://github.com/ijason/NodeJS-Sample-App.git demo && cd demo/EmployeeDB/ && npm install && sed -i -- 's/localhost/mongo/g' app.js && node app.js"
+                ],
+                "command": [
+                "/bin/sh",
+                "-c"
+                ],
+                "image": "node:0.10.40",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "nodejs",
+                "ports": [
+                {
+                    "containerPort": 3000,
+                    "name": "http-server",
+                    "protocol": "TCP"
+                }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                {
+                    "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                    "name": "default-token-wnqn9",
+                    "readOnly": true
+                }
+                ]
+            }
+        ]
+      }
+    }
+  }
+}
