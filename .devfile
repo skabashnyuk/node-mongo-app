@@ -12,12 +12,6 @@ tools:
   - name: exec-plugin
     type: chePlugin
     id: che-machine-exec-plugin:0.0.1
-  - name: k8s-plugin
-    type: chePlugin
-    id: https://raw.githubusercontent.com/azatsarynnyy/che7-plugin-registry/master/org.eclipse.che.vscode.k8s:1.0.0
-  - name: node-mongo-demo
-    type: kubernetes
-    local: app4devfile.yaml
 commands:
   - name: run
     actions:
