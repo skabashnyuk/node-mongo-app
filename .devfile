@@ -15,10 +15,6 @@ tools:
   - name: node-mongo-demo
     type: kubernetes
     local: app4devfile.yaml
-    selector:
-      app.kubernetes.io/name: mysql
-      app.kubernetes.io/component: database
-      app.kubernetes.io/part-of: petclinic
 commands:
   - name: run
     actions:
